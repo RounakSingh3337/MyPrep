@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>InterviewAI — Smart Interview Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+<!-- ── BACKGROUND ── -->
+<div class="bg-grid"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="logo">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <rect width="28" height="28" rx="8" fill="url(#lg)"/>
+      <path d="M8 14 L14 8 L20 14 L14 20 Z" fill="white" opacity="0.9"/>
+      <circle cx="14" cy="14" r="3" fill="url(#lg2)"/>
+      <defs>
+        <linearGradient id="lg" x1="0" y1="0" x2="28" y2="28">
+          <stop offset="0%" stop-color="#6c63ff"/>
+          <stop offset="100%" stop-color="#4cc9f0"/>
+        </linearGradient>
+        <linearGradient id="lg2" x1="0" y1="0" x2="6" y2="6">
+          <stop offset="0%" stop-color="#ffd166"/>
+          <stop offset="100%" stop-color="#ff4d6d"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <span>InterviewAI</span>
+  </div>
+  <div class="header-right">
+    <span class="badge-beta">Beta</span>
+    <a href="https://github.com" class="btn-ghost" target="_blank">GitHub</a>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-eyebrow">Powered by Claude AI</div>
+  <h1>Ace Your Next <span class="gradient-text">Interview</span></h1>
+  <p class="hero-sub">Upload your resume and paste the job link. Get 20+ personalised, role-specific questions with expert hints — in seconds.</p>
+</section>
+
+<!-- ── FORM CARD ── -->
+<main>
+  <form id="mainForm" enctype="multipart/form-data">
+
+    <div class="form-grid">
+
+      <!-- Resume block -->
+      <div class="card" id="resumeCard">
+        <div class="card-header">
+          <div class="card-icon" style="background:linear-gradient(135deg,#6c63ff22,#6c63ff44);">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#6c63ff" stroke-width="2" stroke-linecap="round"/><polyline points="14 2 14 8 20 8" stroke="#6c63ff" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="13" x2="8" y2="13" stroke="#6c63ff" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="17" x2="8" y2="17" stroke="#6c63ff" stroke-width="2" stroke-linecap="round"/><polyline points="10 9 9 9 8 9" stroke="#6c63ff" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <h2>Your Resume</h2>
+            <p>Upload PDF or paste text</p>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button type="button" class="tab active" data-tab="upload" data-group="resume">Upload PDF</button>
+          <button type="button" class="tab" data-tab="paste" data-group="resume">Paste Text</button>
+        </div>
+
+        <div id="resume-upload" class="tab-panel active">
+          <div class="dropzone" id="dropzone">
+            <input type="file" id="resume_file" name="resume_file" accept=".pdf" hidden />
+            <div class="dz-icon">
+              <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="17 8 12 3 7 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="3" x2="12" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="dz-text">Drop your PDF here or <span class="dz-link">browse</span></div>
+            <div class="dz-sub" id="fileLabel">Max 10 MB • PDF only</div>
+          </div>
+        </div>
+
+        <div id="resume-paste" class="tab-panel">
+          <textarea name="resume_text" id="resume_text" placeholder="Paste your resume text here..." rows="9"></textarea>
+        </div>
+      </div>
+
+      <!-- JD block -->
+      <div class="card" id="jdCard">
+        <div class="card-header">
+          <div class="card-icon" style="background:linear-gradient(135deg,#00e5a022,#00e5a044);">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#00e5a0" stroke-width="2"/><line x1="2" y1="12" x2="22" y2="12" stroke="#00e5a0" stroke-width="2"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#00e5a0" stroke-width="2"/></svg>
+          </div>
+          <div>
+            <h2>Job Description</h2>
+            <p>Link or paste the JD</p>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button type="button" class="tab active" data-tab="url" data-group="jd">Job URL</button>
+          <button type="button" class="tab" data-tab="textjd" data-group="jd">Paste Text</button>
+        </div>
+
+        <div id="jd-url" class="tab-panel active">
+          <div class="input-wrap">
+            <svg class="input-icon" width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="#6b6b8a" stroke-width="2" stroke-linecap="round"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="#6b6b8a" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="url" name="jd_url" id="jd_url" placeholder="https://linkedin.com/jobs/view/..." />
+          </div>
+          <div class="hint-box">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#ffd166" stroke-width="2"/><line x1="12" y1="8" x2="12" y2="12" stroke="#ffd166" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="16" x2="12.01" y2="16" stroke="#ffd166" stroke-width="2" stroke-linecap="round"/></svg>
+            Works with LinkedIn, Indeed, Greenhouse, Lever, and most job sites.
+          </div>
+        </div>
+
+        <div id="jd-textjd" class="tab-panel">
+          <textarea name="jd_text" id="jd_text" placeholder="Paste the full job description here..." rows="9"></textarea>
+        </div>
+
+        <!-- Options -->
+        <div class="options-row">
+          <label>Questions to generate</label>
+          <div class="num-control">
+            <button type="button" id="numMinus">−</button>
+            <input type="number" name="num_questions" id="num_questions" value="20" min="5" max="40" readonly />
+            <button type="button" id="numPlus">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-row">
+      <button type="submit" class="btn-generate" id="submitBtn">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Generate Questions
+      </button>
+    </div>
+
+  </form>
+
+  <!-- ── ERROR ── -->
+  <div id="errorBox" class="error-box hidden">
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#ff4d6d" stroke-width="2"/><line x1="15" y1="9" x2="9" y2="15" stroke="#ff4d6d" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="9" x2="15" y2="15" stroke="#ff4d6d" stroke-width="2" stroke-linecap="round"/></svg>
+    <span id="errorMsg"></span>
+  </div>
+
+  <!-- ── LOADING ── -->
+  <div id="loadingSection" class="loading-section hidden">
+    <div class="loading-card">
+      <div class="spinner"></div>
+      <div class="loading-title">Analysing your profile…</div>
+      <div class="loading-steps" id="loadingSteps">
+        <div class="ls ls-active" id="ls1">📄 Reading resume</div>
+        <div class="ls" id="ls2">🌐 Fetching job description</div>
+        <div class="ls" id="ls3">🧠 Crafting tailored questions</div>
+        <div class="ls" id="ls4">✨ Finalising interview pack</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RESULTS ── -->
+  <div id="resultsSection" class="hidden">
+
+    <div class="results-header">
+      <div>
+        <h2 class="results-title">Your Interview Questions</h2>
+        <p class="results-sub" id="resultsMeta"></p>
+      </div>
+      <div class="results-actions">
+        <button class="btn-ghost" id="copyAllBtn">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2"/></svg>
+          Copy All
+        </button>
+        <button class="btn-ghost" id="resetBtn">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3.51 15a9 9 0 1 0 .49-4.95" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          New Search
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row" id="statsRow"></div>
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Technical Skills">Technical</button>
+      <button class="filter-btn" data-filter="Behavioral">Behavioral</button>
+      <button class="filter-btn" data-filter="System Design">System Design</button>
+      <button class="filter-btn" data-filter="Problem Solving">Problem Solving</button>
+      <button class="filter-btn" data-filter="Cultural Fit">Cultural Fit</button>
+      <button class="filter-btn" data-filter="Leadership">Leadership</button>
+    </div>
+
+    <!-- Question list -->
+    <div id="questionList"></div>
+
+  </div>
+</main>
+
+<footer>
+  <span>Built with Claude AI · Flask · Python</span>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
